@@ -12,24 +12,6 @@ body {
     overflow-x: hidden;
 }
 
-/* Animated background glow */
-body::before {
-    content: "";
-    position: fixed;
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(0,255,174,0.15), transparent 60%);
-    top: -200px;
-    left: -200px;
-    z-index: -1;
-    animation: moveGlow 12s infinite alternate ease-in-out;
-}
-
-@keyframes moveGlow {
-    from { transform: translate(0,0); }
-    to { transform: translate(200px, 150px); }
-}
-
 /* HEADER */
 .main-header {
     position: fixed;
@@ -39,12 +21,6 @@ body::before {
     backdrop-filter: blur(10px);
     background: rgba(0, 0, 0, 0.4);
     border-bottom: 1px solid rgba(255,255,255,0.08);
-    transition: 0.3s ease;
-}
-
-.main-header.scrolled {
-    background: rgba(0, 0, 0, 0.75);
-    box-shadow: 0 0 15px rgba(0,255,174,0.25);
 }
 
 .container {
@@ -125,22 +101,6 @@ body::before {
     50% { transform: translateY(-10px); }
 }
 
-/* Fade-in hero text */
-.hero h1, .hero p, .hero .btn {
-    animation: fadeUp 1.2s ease forwards;
-    opacity: 0;
-}
-
-.hero p { animation-delay: 0.3s; }
-.hero .btn { animation-delay: 0.6s; }
-
-@keyframes fadeUp {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
 .hero h1 {
     font-size: 3.5rem;
     margin-bottom: 15px;
@@ -153,12 +113,6 @@ body::before {
 }
 
 /* BUTTON */
-@keyframes pulse {
-    0% { box-shadow: 0 0 0 0 rgba(0,255,174,0.7); }
-    70% { box-shadow: 0 0 0 15px rgba(0,255,174,0); }
-    100% { box-shadow: 0 0 0 0 rgba(0,255,174,0); }
-}
-
 .btn {
     display: inline-block;
     background: #00ffae;
@@ -169,7 +123,6 @@ body::before {
     font-weight: bold;
     transition: 0.3s;
     box-shadow: 0 0 15px rgba(0,255,174,0.4);
-    animation: pulse 2.5s infinite;
 }
 
 .btn:hover {
@@ -182,18 +135,6 @@ body::before {
 .section {
     padding: 100px 10% 80px;
     text-align: center;
-    position: relative;
-}
-
-.section::after {
-    content: "";
-    width: 80px;
-    height: 3px;
-    background: #00ffae;
-    display: block;
-    margin: 40px auto 0;
-    border-radius: 5px;
-    box-shadow: 0 0 10px #00ffae;
 }
 
 .section.dark {
@@ -226,14 +167,6 @@ body::before {
 .card:hover {
     transform: translateY(-10px);
     box-shadow: 0 0 20px rgba(0,255,174,0.3);
-}
-
-.card h3 {
-    transition: transform 0.3s ease;
-}
-
-.card:hover h3 {
-    transform: scale(1.1);
 }
 
 /* SOCIAL ICONS */
@@ -271,4 +204,68 @@ footer {
     background: #0a0f14;
     font-size: 0.9rem;
     color: #777;
+}
+/* DROPDOWN */
+.dropdown {
+    position: relative;
+}
+
+.dropbtn {
+    background: #00ffae;
+    color: black;
+    padding: 8px 14px;
+    font-size: 1.2rem;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    margin-top: 10px;
+    background: #111827;
+    min-width: 180px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    z-index: 999;
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 12px 16px;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.dropdown-content a:hover {
+    background: #00ffae;
+    color: black;
+}
+
+.show {
+    display: block;
+}
+
+/* RESPONSIVE NAV */
+@media (min-width: 900px) {
+    .dropbtn {
+        display: none;
+    }
+
+    .dropdown-content {
+        display: flex !important;
+        position: static;
+        background: none;
+        box-shadow: none;
+        gap: 25px;
+        align-items: center;
+    }
+
+    .dropdown-content a {
+        padding: 0;
+    }
 }
