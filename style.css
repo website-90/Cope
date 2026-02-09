@@ -5,11 +5,20 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+/* 🌌 ANIMATED BACKGROUND */
 body {
-    background: radial-gradient(circle at 20% 20%, #0f2027, #0d1117 40%);
+    background: linear-gradient(-45deg, #0f2027, #0d1117, #111827, #0f2027);
+    background-size: 400% 400%;
+    animation: gradientBG 12s ease infinite;
     color: white;
     line-height: 1.6;
     overflow-x: hidden;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 /* HEADER */
@@ -54,7 +63,7 @@ body {
     color: white;
     text-decoration: none;
     font-weight: 600;
-    transition: 0.3s;
+    transition: all 0.3s ease;
 }
 
 .nav-links a:hover {
@@ -104,6 +113,7 @@ body {
 .hero h1 {
     font-size: 3.5rem;
     margin-bottom: 15px;
+    text-shadow: 0 0 10px #00ffae, 0 0 25px #00ffae, 0 0 45px rgba(0,255,174,0.6);
 }
 
 .hero p {
@@ -121,7 +131,7 @@ body {
     border-radius: 30px;
     text-decoration: none;
     font-weight: bold;
-    transition: 0.3s;
+    transition: all 0.3s ease;
     box-shadow: 0 0 15px rgba(0,255,174,0.4);
 }
 
@@ -161,12 +171,52 @@ body {
     padding: 25px;
     border-radius: 12px;
     width: 280px;
-    transition: 0.3s;
+    transition: all 0.3s ease;
 }
 
 .card:hover {
     transform: translateY(-10px);
     box-shadow: 0 0 20px rgba(0,255,174,0.3);
+}
+
+/* ROADMAP */
+.timeline {
+    max-width: 700px;
+    margin: 40px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.milestone {
+    background: #1f2937;
+    padding: 18px;
+    border-left: 4px solid #00ffae;
+    transition: all 0.3s ease;
+}
+
+.milestone:hover {
+    transform: translateX(8px);
+    box-shadow: 0 0 15px rgba(0,255,174,0.4);
+}
+
+/* MEME GALLERY */
+.meme-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.meme-gallery img {
+    width: 100%;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.meme-gallery img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(0,255,174,0.5);
 }
 
 /* SOCIAL ICONS */
@@ -178,7 +228,7 @@ body {
     font-size: 1.8rem;
     margin: 0 12px;
     color: #00ffae;
-    transition: 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .social-icon:hover {
@@ -205,10 +255,9 @@ footer {
     font-size: 0.9rem;
     color: #777;
 }
+
 /* DROPDOWN */
-.dropdown {
-    position: relative;
-}
+.dropdown { position: relative; }
 
 .dropbtn {
     background: #00ffae;
@@ -246,16 +295,33 @@ footer {
     color: black;
 }
 
-.show {
-    display: block;
+.show { display: block; }
+
+/* 📋 FLOATING COPY BUTTON */
+#copy-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #00ffae;
+    color: black;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(0,255,174,0.5);
+    transition: all 0.3s ease;
+    z-index: 1000;
 }
 
-/* RESPONSIVE NAV */
-@media (min-width: 900px) {
-    .dropbtn {
-        display: none;
-    }
+#copy-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 25px rgba(0,255,174,0.9);
+}
 
+/* RESPONSIVE */
+@media (min-width: 900px) {
+    .dropbtn { display: none; }
     .dropdown-content {
         display: flex !important;
         position: static;
@@ -264,8 +330,44 @@ footer {
         gap: 25px;
         align-items: center;
     }
+    .dropdown-content a { padding: 0; }
+}
 
-    .dropdown-content a {
-        padding: 0;
-    }
+@media (max-width: 600px) {
+    .hero h1 { font-size: 2.4rem; }
+    .section { padding: 80px 6% 60px; }
+    .milestone { font-size: 0.95rem; }
+}
+.hero {
+    height: 100vh;
+    background: url("hero-bg.jpg") center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    padding: 0 20px;
+    overflow: hidden;
+}
+
+/* GLOWING MASCOT AURA */
+.hero::before {
+    content: "";
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(0,255,174,0.35), transparent 70%);
+    filter: blur(60px);
+    animation: pulseGlow 4s ease-in-out infinite;
+    z-index: 1;
+}
+
+@keyframes pulseGlow {
+    0%,100% { transform: scale(1); opacity: 0.7; }
+    50% { transform: scale(1.2); opacity: 1; }
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
 }
