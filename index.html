@@ -12,14 +12,13 @@
 <header class="main-header">
     <div class="container nav-container">
         <div class="brand">$COPE</div>
-
-        <!-- DROPDOWN MENU -->
         <div class="dropdown">
             <button class="dropbtn" id="menu-btn">☰</button>
             <div class="dropdown-content" id="dropdown-menu">
                 <a href="#about">About</a>
-                <a href="#vision">Vision</a>
-                <a href="#community">Community</a>
+                <a href="#tokenomics">Tokenomics</a>
+                <a href="#roadmap">Roadmap</a>
+                <a href="#memes">Memes</a>
                 <a href="#buy" class="nav-btn">Buy Now</a>
             </div>
         </div>
@@ -37,50 +36,80 @@
 
 <section id="about" class="section">
     <h2>What is $COPE?</h2>
-    <p>$COPE is a memecoin created by people who are tired of being exit liquidity. No fake promises. No disappearing devs. No liquidity games. Just a long-term vision in a space full of short-term plays.</p>
+    <p>$COPE is a memecoin created by people who are tired of being exit liquidity. No fake promises. No disappearing devs. No liquidity games. Just long-term vision.</p>
 </section>
 
-<section id="vision" class="section dark">
-    <h2>Why $COPE Is Different</h2>
+<!-- TOKENOMICS -->
+<section id="tokenomics" class="section dark">
+    <h2>Tokenomics</h2>
     <div class="features">
-        <div class="card">
-            <h3>🔒 Stability First</h3>
-            <p>We focus on sustainability instead of quick hype pumps.</p>
-        </div>
-        <div class="card">
-            <h3>👁️ Transparency</h3>
-            <p>No hidden tricks. The community sees everything.</p>
-        </div>
-        <div class="card">
-            <h3>🤝 Community Driven</h3>
-            <p>This is not a hit-and-run token. It's built to last.</p>
-        </div>
+        <div class="card"><h3>💰 Supply</h3><p>1,000,000,000 $COPE</p></div>
+        <div class="card"><h3>📉 Taxes</h3><p>0% Buy / 0% Sell</p></div>
+        <div class="card"><h3>🔒 Liquidity</h3><p>Liquidity Locked</p></div>
+        <div class="card"><h3>👤 Ownership</h3><p>Ownership Renounced</p></div>
     </div>
 </section>
 
+<!-- ROADMAP -->
+<section id="roadmap" class="section">
+    <h2>Roadmap</h2>
+    <div class="timeline">
+        <div class="milestone">🚀 Launch & Community Building</div>
+        <div class="milestone">📢 Marketing & Influencers</div>
+        <div class="milestone">📈 Listings & Partnerships</div>
+        <div class="milestone">🌍 Global Expansion</div>
+    </div>
+</section>
+
+<!-- MEME GALLERY -->
+<section id="memes" class="section dark">
+    <h2>$COPE Meme Gallery</h2>
+    <div class="meme-gallery">
+        <img src="images/meme1.jpg.jpeg">
+        <img src="images/meme2.jpg.jpeg">
+        <img src="images/meme3.jpg.jpeg">
+        <img src="images/meme4.jpg.jpeg">
+        <img src="images/meme5.jpg.jpeg">
+    </div>
+</section>
+
+<!-- COMMUNITY -->
 <section id="community" class="section">
-    <h2>Powered by the Community</h2>
-    <p>While others chase quick pumps, $COPE focuses on stability, transparency, and real community strength.</p>
+    <h2>Join the Community</h2>
     <div class="socials">
         <a href="https://x.com/devofcope?s=21" target="_blank" class="social-icon"><i class="fab fa-x-twitter"></i></a>
         <a href="https://t.me/+cxzKbFlo3rZmZDI8" target="_blank" class="social-icon"><i class="fab fa-telegram-plane"></i></a>
     </div>
 </section>
 
+<!-- LIVE CHART -->
+<section class="section dark">
+    <h2>Live Chart</h2>
+    <iframe src="https://dexscreener.com" width="100%" height="500"></iframe>
+</section>
+
+<!-- CONTRACT -->
+<section class="section" id="contract">
+    <h2>Official Contract Address</h2>
+    <p id="contract-address">COMING SOON</p>
+</section>
+
+<!-- BUY GUIDE -->
 <section id="buy" class="section dark">
     <h2>How to Buy $COPE</h2>
     <div class="steps">
-        <div class="step">1️⃣ Create a crypto wallet (Phantom / MetaMask)</div>
-        <div class="step">2️⃣ Fund it with SOL or ETH</div>
+        <div class="step">1️⃣ Install Phantom or MetaMask</div>
+        <div class="step">2️⃣ Fund wallet with SOL or ETH</div>
         <div class="step">3️⃣ Connect to a DEX</div>
         <div class="step">4️⃣ Swap for $COPE</div>
     </div>
-    <a href="#" class="btn">Buy $COPE</a>
 </section>
 
 <footer>
     <p>©️ 2026 $COPE. Built to Stay.</p>
 </footer>
+
+<button id="copy-btn">📋 Copy Contract</button>
 
 <script>
 // Smooth scroll
@@ -94,23 +123,14 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // Dropdown
 const menuBtn = document.getElementById("menu-btn");
 const dropdownMenu = document.getElementById("dropdown-menu");
+menuBtn.addEventListener("click", () => dropdownMenu.classList.toggle("show"));
+window.addEventListener("click", e => { if (!e.target.closest('.dropdown')) dropdownMenu.classList.remove('show'); });
 
-menuBtn.addEventListener("click", () => {
-    dropdownMenu.classList.toggle("show");
-});
-
-window.addEventListener("click", function(e) {
-    if (!e.target.closest('.dropdown')) {
-        dropdownMenu.classList.remove('show');
-    }
-});
-
-// Reveal animation
-const sections = document.querySelectorAll('.section, .card');
+// Scroll reveal
+const sections = document.querySelectorAll('.section, .card, .milestone, img');
 const reveal = () => {
     sections.forEach(sec => {
-        const top = sec.getBoundingClientRect().top;
-        if (top < window.innerHeight - 100) {
+        if (sec.getBoundingClientRect().top < window.innerHeight - 100) {
             sec.style.opacity = 1;
             sec.style.transform = "translateY(0)";
         }
@@ -123,6 +143,14 @@ sections.forEach(sec => {
 });
 window.addEventListener('scroll', reveal);
 reveal();
+
+// Copy contract
+document.getElementById("copy-btn").addEventListener("click", () => {
+    const address = document.getElementById("contract-address").innerText;
+    navigator.clipboard.writeText(address);
+    document.getElementById("copy-btn").innerText = "✅ Copied!";
+    setTimeout(()=> document.getElementById("copy-btn").innerText = "📋 Copy Contract",2000);
+});
 </script>
 
 </body>
